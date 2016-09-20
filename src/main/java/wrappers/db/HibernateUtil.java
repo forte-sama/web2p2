@@ -1,4 +1,5 @@
-package com.concretepage;
+package wrappers.db;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
