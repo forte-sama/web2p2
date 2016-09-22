@@ -11,17 +11,17 @@
 	<br />
 	<br />
 	<div style="width: 40%; margin: 0 auto">
-		<h:form id="userForm">
+		<h:form id="loginForm">
 			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			<f:event listener="#{beanUsuarios.validarCredenciales}" type="postValidate" />
 			<p:panel header="Logging In">
 				<h:panelGrid columns="2" cellpadding="5">
-						<p:outputLabel value="Email:" />
-						<p:inputText id="emailInput" value="#{beanUsuarios.email}" required="true" requiredMessage="Email no debe ser vacio"/>
-						<p:outputLabel value="Password:" />
-						<p:password id="passInput" value="#{beanUsuarios.password}" required="true" requiredMessage="Password no debe ser vacio"/>
-						<p:commandButton value="Log In" action="#{beanUsuarios.iniciarSesion}"/>
-					<p:button value="Registrar" href="salidita.xhtml"/>
+					<p:outputLabel value="Email:" />
+					<p:inputText id="emailInput" value="#{beanUsuarios.email}" required="true" requiredMessage="Email no debe ser vacio"/>
+					<p:outputLabel value="Password:" />
+					<p:password id="passInput" value="#{beanUsuarios.password}" required="true" requiredMessage="Password no debe ser vacio"/>
+					<p:commandButton value="Log In" action="#{beanUsuarios.iniciarSesion}"/>
+					<p:button value="Registrar" href="registroUsuario.xhtml"/>
 				</h:panelGrid>
 			</p:panel>
 		</h:form>

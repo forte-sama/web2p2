@@ -1,7 +1,6 @@
 package beans;
 
 import models.Usuario;
-import wrappers.db.DBService;
 import wrappers.GestorUsuarios;
 
 import javax.faces.application.FacesMessage;
@@ -11,20 +10,15 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
-import javax.faces.validator.ValidatorException;
 
 @ManagedBean
 @RequestScoped
 public class BeanUsuarios {
 	String email;
     String password;
-
-    static {
-        //iniciar servicio db
-        DBService.test();
-        //crear admin default
-        GestorUsuarios.crearAdminDefault();
-    }
+    String nombre;
+    String direccion;
+    String telefono;
 
     public BeanUsuarios() { }
 
@@ -57,24 +51,21 @@ public class BeanUsuarios {
     }
 
 	public String guardarUsuario() {
-        return null;
+        Usuario nuevoUsuario = new Usuario();
+        nuevoUsuario.setEmail(email);
+        nuevoUsuario.setNombre(nombre);
+        nuevoUsuario.setPassword(password);
+        nuevoUsuario.setDireccion(direccion);
+        nuevoUsuario.setTelefono(telefono);
+
+        GestorUsuarios.guardar(nuevoUsuario);
+
+        return "index?faces-redirect=true";
     }
 
     public String iniciarSesion() {
-        Usuario usuario = new Usuario();
-        usuario.setEmail(email);
-        usuario.setPassword(password);
-
-        Usuario found = GestorUsuarios.buscarCredenciales(email,password);
-
-        return "salidita";
-//        if(found != null) {
-//            return "salidita";
-//        }
-//        else {
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-//            return null;
-//        }
+        //solo entra a este metodo si pasa la validacion postvalidate validarCredenciales
+        return "productosDisponibles?faces-redirect=true";
     }
 
     public String getEmail() {
@@ -88,5 +79,23 @@ public class BeanUsuarios {
     }
     public void setPassword(String pass) {
         this.password = pass;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    public String getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

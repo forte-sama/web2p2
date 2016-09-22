@@ -12,7 +12,7 @@ public class GestorUsuarios {
         return HibernateUtil.getSessionFactory().openSession();
     }
 
-	public static void save(Usuario usuario) {
+	public static void guardar(Usuario usuario) {
         Session session = newSession();
 
 		session.beginTransaction();

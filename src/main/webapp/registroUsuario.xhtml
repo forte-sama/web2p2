@@ -1,0 +1,35 @@
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>P2</title>
+</h:head>
+<h:body>
+	<br />
+	<br />
+	<div style="width: 40%; margin: 0 auto">
+		<h:form id="registerForm">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			<p:panel header="Registro de Usuario">
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Email:" />
+					<p:inputText id="emailInput" value="#{beanUsuarios.email}" required="true" requiredMessage="Email no debe ser vacio">
+						<f:validator validatorId="newUserValidator" />
+					</p:inputText>
+					<p:outputLabel value="Nombre:" />
+					<p:inputText id="nombreInput" value="#{beanUsuarios.nombre}" required="true" requiredMessage="Nombre no debe ser vacio"/>
+					<p:outputLabel value="Password:" />
+					<p:password id="passInput" value="#{beanUsuarios.password}" required="true" requiredMessage="Password no debe ser vacio"/>
+					<p:outputLabel value="Direccion:" />
+					<p:inputText id="dirInput" value="#{beanUsuarios.direccion}" required="true" requiredMessage="Direccion no debe ser vacio"/>
+					<p:outputLabel value="Telefono:" />
+					<p:inputMask id="telInput" value="#{beanUsuarios.telefono}" mask="999-999-9999" required="true" requiredMessage="Telefono no debe ser vacio"/>
+					<p:commandButton value="Registrar" action="#{beanUsuarios.guardarUsuario}"/>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</div>
+</h:body>
+</html>
