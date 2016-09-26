@@ -8,10 +8,20 @@
 	<title>P2</title>
 </h:head>
 <h:body>
-	<f:metadata>
-		<f:viewParam name="producto" value="#{beanDetalleProducto.idProductoMostrado}" />
-	</f:metadata>
-	<h1>#{beanDetalleProducto.productoMostrado.nombre}</h1>
-	<h1>#{beanDetalleProducto.idProductoMostrado}</h1>
+	<p:panel header="Producto: #{beanDetalleProducto.productoMostrado.nombre}">
+		<p:panelGrid columns="2">
+			<h:outputText value="Descripcion:" />
+			<h:outputText value="#{beanDetalleProducto.productoMostrado.descripcion}" />
+
+			<h:outputText value="Precio:" />
+			<h:outputText value="#{beanDetalleProducto.productoMostrado.precio}" />
+
+			<h:outputText value="Existencia:" />
+			<h:outputText value="Quedan: #{beanDetalleProducto.productoMostrado.cantidad}" />
+
+			<h:outputText value="Number:" />
+			<h:outputText value="24" />
+		</p:panelGrid>
+	</p:panel>
 </h:body>
 </html>

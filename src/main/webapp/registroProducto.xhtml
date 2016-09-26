@@ -17,9 +17,11 @@
 					<p:outputLabel value="Nombre:" />
 					<p:inputText value="#{beanProductos.nombre}" required="true" requiredMessage="Nombre no debe ser vacio" />
 					<p:outputLabel value="Descripcion:" />
-					<p:inputText value="#{beanProductos.descripcion}" required="true" requiredMessage="Descripcion no debe ser vacio" />
+					<p:inputTextarea value="#{beanProductos.descripcion}" required="true" requiredMessage="Descripcion no debe ser vacia" />
+					<p:outputLabel value="Precio:" />
+					<p:inputText value="#{beanProductos.precio}" required="true" requiredMessage="Precio no debe ser vacio" />
 					<p:outputLabel value="Cantidad:" />
-					<p:spinner value="#{beanProductos.cantidad}" min="0" />
+					<p:spinner value="#{beanProductos.cantidad}" min="0" required="true" requiredMessage="Cantidad no debe ser vacia"/>
 					<p:commandButton value="Guardar" action="#{beanProductos.guardarProducto}" ajax="true"/>
 				</h:panelGrid>
 			</p:panel>

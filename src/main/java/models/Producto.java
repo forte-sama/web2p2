@@ -17,6 +17,7 @@ public class Producto {
     String nombre;
     String descripcion;
     Long cantidad;
+    Double precio;
     byte[] imagen;
 
     public Producto() { id = null; }
@@ -50,5 +51,11 @@ public class Producto {
     }
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
+    }
+    public Double getPrecio() {
+        return precio;
+    }
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 }

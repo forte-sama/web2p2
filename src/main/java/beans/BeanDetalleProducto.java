@@ -4,7 +4,9 @@ import models.Producto;
 import org.primefaces.model.UploadedFile;
 import wrappers.GestorProductos;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
@@ -12,10 +14,9 @@ import javax.faces.bean.ViewScoped;
  * Created by forte on 22/09/16.
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class BeanDetalleProducto {
     //producto mostrado
-    Long idProductoMostrado;
     Producto productoMostrado;
 
     //comentario
@@ -23,22 +24,15 @@ public class BeanDetalleProducto {
 
     public BeanDetalleProducto() { }
 
-    public String detalleProducto(Producto p) {
+    public String mostrarDetallesProducto(Producto p) {
         productoMostrado = p;
 
         return "detallesProducto";
     }
+
     public String agregarReview(Producto producto) {
 
         return null;
-    }
-
-    public Long getIdProductoMostrado() {
-        return idProductoMostrado;
-    }
-
-    public void setIdProductoMostrado(Long idProductoMostrado) {
-        this.idProductoMostrado = idProductoMostrado;
     }
 
     public Producto getProductoMostrado() {

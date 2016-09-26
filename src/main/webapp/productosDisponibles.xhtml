@@ -7,33 +7,42 @@
 	<title>P2</title>
 </h:head>
 <h:body>
-	<h2>Productos Disponibles</h2>
-	<h:form id="form">
-		<p:dataTable var="p"
-					 value="#{lazyView.lazyModel}"
-					 paginator="true"
-					 rows="3"
-					 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-					 rowsPerPageTemplate="3,5,10"
-					 selectionMode="single"
-					 selection="#{lazyView.selectedProd}"
-					 id="tablaProductos"
-					 lazy="true">
-			<p:ajax event="rowSelect" listener="#{lazyView.onRowSelect}" />
-			<p:column headerText="Id">
-				<h:outputText value="#{p.id}" />
-			</p:column>
-			<p:column headerText="Nombre">
-				<h:outputText value="#{p.nombre}" />
-			</p:column>
-			<p:column headerText="Descripcion">
-				<h:outputText value="#{p.descripcion}" />
-			</p:column>
-			<p:column headerText="Acciones">
-				<p:commandButton icon="fa fa-edit" action="#{beanProductos.editarProducto(p)}"/>
-				<p:button icon="fa fa-eye" outcome="detallesProducto?producto=#{p.id}" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
+	<br />
+	<br />
+	<div style="width: 80%; margin: 0 auto">
+		<p:panel header="Productos Disponibles">
+			<h:form id="form">
+				<p:dataTable var="p"
+							 value="#{lazyView.lazyModel}"
+							 paginator="true"
+							 rows="3"
+							 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+							 rowsPerPageTemplate="3,5,10"
+							 selectionMode="single"
+							 selection="#{lazyView.selectedProd}"
+							 id="tablaProductos"
+							 lazy="true">
+					<p:ajax event="rowSelect" listener="#{lazyView.onRowSelect}" />
+					<p:column headerText="Id">
+						<h:outputText value="#{p.id}" />
+					</p:column>
+					<p:column headerText="Nombre">
+						<h:outputText value="#{p.nombre}" />
+					</p:column>
+					<p:column headerText="Precio">
+						<h:outputText value="#{p.precio}" />
+					</p:column>
+					<p:column headerText="Descripcion">
+						<h:outputText value="#{p.descripcion}" />
+					</p:column>
+					<p:column headerText="Acciones">
+						<p:commandButton icon="fa fa-edit" action="#{beanProductos.editarProducto(p)}"/>
+						<p:commandButton icon="fa fa-eye" action="#{beanDetalleProducto.mostrarDetallesProducto(p)}"/>
+						<p:commandButton icon="fa fa-cart-plus" action="#{beanCarrito.agregarProducto(p)}"/>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</div>
 </h:body>
 </html>

@@ -28,6 +28,7 @@ public class BeanProductos {
     String nombre;
     String descripcion;
     Long cantidad;
+    Double precio;
     UploadedFile imagenSubida;
     byte[] dataImagen;
 
@@ -41,6 +42,7 @@ public class BeanProductos {
             nombre = producto.getNombre();
             descripcion = producto.getDescripcion();
             cantidad = producto.getCantidad();
+            precio = producto.getPrecio();
             //setear la imagen
         }
 
@@ -59,6 +61,7 @@ public class BeanProductos {
         producto.setNombre(nombre);
         producto.setDescripcion(descripcion);
         producto.setCantidad(cantidad);
+        producto.setPrecio(precio);
         //setear imagen
 
         GestorProductos.guardar(producto);
@@ -71,6 +74,7 @@ public class BeanProductos {
         //igualaciones hechas este orden por el tipo de dato
         id = cantidad = null;
         nombre = descripcion = null;
+        precio = null;
         imagenSubida = null;
     }
 
@@ -98,17 +102,22 @@ public class BeanProductos {
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
+    public Double getPrecio() {
+        return precio;
+    }
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
     public UploadedFile getImagenSubida() {
         return imagenSubida;
     }
     public void setImagenSubida(UploadedFile imagenSubida) {
         this.imagenSubida = imagenSubida;
     }
-
     public byte[] getDataImagen() {
         return dataImagen;
     }
-
     public void setDataImagen(byte[] dataImagen) {
         this.dataImagen = dataImagen;
     }
