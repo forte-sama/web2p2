@@ -14,7 +14,7 @@
 		<h:form id="loginForm">
 			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			<f:event listener="#{beanUsuarios.validarCredenciales}" type="postValidate" />
-			<p:panel header="Logging In">
+			<p:panel header="#{msg['login_form_message']}">
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel value="Email:" />
 					<p:inputText id="emailInput" value="#{beanUsuarios.email}" required="true" requiredMessage="Email no debe ser vacio"/>

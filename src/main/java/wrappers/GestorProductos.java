@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import wrappers.db.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,5 +42,31 @@ public class GestorProductos {
         }
         session.getTransaction().commit();
         session.close();
+    }
+
+    public static List<Producto> getAll() {
+        Session session = newSession();
+        Query query = session.createQuery("from Producto as pro");
+
+        return query.list();
+    }
+
+    public static List<Producto> getAll(int pageNumber, int pageSize) {
+        Session session = newSession();
+        Query query = session.createQuery("from Producto as pro");
+
+        query.setFirstResult(pageNumber);
+        query.setMaxResults(pageSize);
+
+        return query.list();
+    }
+
+    public static Long obtenerCantidadProductos() {
+        Session session = newSession();
+        Query query = session.createQuery("select COUNT(*) from Producto");
+
+        List<Long> res = query.list();
+
+        return res.size() > 0 ? res.get(0) : null;
     }
 }

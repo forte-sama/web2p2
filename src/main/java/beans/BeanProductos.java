@@ -1,15 +1,22 @@
 package beans;
 
 import models.Producto;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.UploadedFile;
 import wrappers.GestorProductos;
+import wrappers.LazyCarDataModel;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 /**
  * Created by forte on 22/09/16.
@@ -22,20 +29,15 @@ public class BeanProductos {
     String descripcion;
     Long cantidad;
     UploadedFile imagenSubida;
+    byte[] dataImagen;
 
     public BeanProductos() { }
 
-    //TODO usar producto en lugar de ID cuando vista productosDisponibles este lista
-//    public String editarProducto(Producto producto) {
-    public String editarProducto(Long providedId) {
-//        id = producto.getId();
-//        nombre = producto.getNombre();
-//        descripcion = producto.getDescripcion();
-//        cantidad = producto.getCantidad();
-//        imagen = producto.getImagen();
+    public String editarProducto(Producto producto) {
+        Long providedId = producto.getId();
+
         if(providedId != null) {
             id = providedId;
-            Producto producto = GestorProductos.getById(providedId);
             nombre = producto.getNombre();
             descripcion = producto.getDescripcion();
             cantidad = producto.getCantidad();
@@ -101,5 +103,13 @@ public class BeanProductos {
     }
     public void setImagenSubida(UploadedFile imagenSubida) {
         this.imagenSubida = imagenSubida;
+    }
+
+    public byte[] getDataImagen() {
+        return dataImagen;
+    }
+
+    public void setDataImagen(byte[] dataImagen) {
+        this.dataImagen = dataImagen;
     }
 }

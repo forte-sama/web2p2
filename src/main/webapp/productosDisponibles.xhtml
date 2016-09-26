@@ -1,14 +1,39 @@
 <html lang="en"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>P2</title>
 </h:head>
 <h:body>
-	<h3>Salidita.xhtml</h3>
-	<h:form>
-		<h:commandButton value="editar: 2" action="#{beanProductos.editarProducto(2)}"/>
+	<h2>Productos Disponibles</h2>
+	<h:form id="form">
+		<p:dataTable var="p"
+					 value="#{lazyView.lazyModel}"
+					 paginator="true"
+					 rows="3"
+					 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					 rowsPerPageTemplate="3,5,10"
+					 selectionMode="single"
+					 selection="#{lazyView.selectedProd}"
+					 id="tablaProductos"
+					 lazy="true">
+			<p:ajax event="rowSelect" listener="#{lazyView.onRowSelect}" />
+			<p:column headerText="Id">
+				<h:outputText value="#{p.id}" />
+			</p:column>
+			<p:column headerText="Nombre">
+				<h:outputText value="#{p.nombre}" />
+			</p:column>
+			<p:column headerText="Descripcion">
+				<h:outputText value="#{p.descripcion}" />
+			</p:column>
+			<p:column headerText="Acciones">
+				<p:commandButton icon="fa fa-edit" action="#{beanProductos.editarProducto(p)}"/>
+				<p:button icon="fa fa-eye" outcome="detallesProducto?producto=#{p.id}" />
+			</p:column>
+		</p:dataTable>
 	</h:form>
 </h:body>
 </html>
