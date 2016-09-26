@@ -26,7 +26,7 @@
 					<p:inputText id="dirInput" value="#{beanUsuarios.direccion}" required="true" requiredMessage="Direccion no debe ser vacio"/>
 					<p:outputLabel value="Telefono:" />
 					<p:inputMask id="telInput" value="#{beanUsuarios.telefono}" mask="999-999-9999" required="true" requiredMessage="Telefono no debe ser vacio"/>
-					<p:commandButton value="Registrar" action="#{beanUsuarios.guardarUsuario}"/>
+					<p:commandButton value="Registrar" action="#{beanUsuarios.guardarUsuario}" icon="fa fa-send"/>
 				</h:panelGrid>
 			</p:panel>
 		</h:form>

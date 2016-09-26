@@ -22,7 +22,8 @@
 					<p:inputText value="#{beanProductos.precio}" required="true" requiredMessage="Precio no debe ser vacio" />
 					<p:outputLabel value="Cantidad:" />
 					<p:spinner value="#{beanProductos.cantidad}" min="0" required="true" requiredMessage="Cantidad no debe ser vacia"/>
-					<p:commandButton value="Guardar" action="#{beanProductos.guardarProducto}" ajax="true"/>
+					<p:commandButton value="Guardar" action="#{beanProductos.guardarProducto}" icon="fa fa-send" ajax="true"/>
+					<p:commandButton value="Ir a lista" action="#{beanProductos.verLista}" icon="fa fa-reply" ajax="true"/>
 				</h:panelGrid>
 			</p:panel>
 		</h:form>

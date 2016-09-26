@@ -70,6 +70,11 @@ public class BeanProductos {
         return "productosDisponibles?faces-redirect=true";
     }
 
+    public String verLista() {
+        limpiarDatos();
+        return "productosDisponibles?faces-redirect=true";
+    }
+
     private void limpiarDatos() {
         //igualaciones hechas este orden por el tipo de dato
         id = cantidad = null;

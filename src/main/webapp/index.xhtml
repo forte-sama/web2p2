@@ -20,8 +20,8 @@
 					<p:inputText id="emailInput" value="#{beanUsuarios.email}" required="true" requiredMessage="Email no debe ser vacio"/>
 					<p:outputLabel value="Password:" />
 					<p:password id="passInput" value="#{beanUsuarios.password}" required="true" requiredMessage="Password no debe ser vacio"/>
-					<p:commandButton value="Log In" action="#{beanUsuarios.iniciarSesion}"/>
-					<p:button value="Registrar" href="registroUsuario.xhtml"/>
+					<p:commandButton value="Log In" action="#{beanUsuarios.iniciarSesion}" icon="fa fa-sign-in" />
+					<p:button value="Registrar" href="registroUsuario.xhtml" icon="fa fa-plus-square" />
 				</h:panelGrid>
 			</p:panel>
 		</h:form>
