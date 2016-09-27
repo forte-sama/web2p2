@@ -13,7 +13,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by forte on 26/09/16.
@@ -64,7 +64,12 @@ public class BeanCarrito {
         UIInput cantidadInput = (UIInput)components.findComponent("inputCantidad");
         String rawCantidad = cantidadInput.getLocalValue() == null ? "" : cantidadInput.getLocalValue().toString();
 
-        Producto found = GestorProductos.getById(Long.parseLong(rawProductoId));
+        Producto found;
+        try {
+            found = GestorProductos.getById(Long.parseLong(rawProductoId));
+        } catch (NumberFormatException e) {
+            found = null;
+        }
 
         if(found == null) {
             System.out.println("NO SE ENCUENTRA");
@@ -79,11 +84,16 @@ public class BeanCarrito {
             fc.renderResponse();
         }
         else {
-            Long cantidad = Long.parseLong(rawCantidad);
+            Long cantidad;
+            try {
+                cantidad = Long.parseLong(rawCantidad);
+            } catch (NumberFormatException e) {
+                cantidad = 0L;
+            }
 
             if(found.getCantidad() < cantidad) {
                 System.out.println("NO HAY EXISTENCIA SUFICIENTE PARA ID:" + found.getId());
-                //no encontro nada
+                //no hay suficiente
                 FacesMessage message = new FacesMessage("Fallo en operacion.",
                         "No hay existencia suficiente");
                 message.setSeverity(FacesMessage.SEVERITY_WARN);
@@ -112,8 +122,10 @@ public class BeanCarrito {
         this.cantidad = cantidad;
     }
 
-    public HashMap<Producto, Long> getProductos() {
-        return productos;
+    public List<Map.Entry<Producto, Long>> getProductos() {
+        Set<Map.Entry<Producto, Long>> productSet = productos.entrySet();
+
+        return new ArrayList<>(productSet);
     }
 
     public void setProductos(HashMap<Producto, Long> productos) {

@@ -11,7 +11,7 @@
 	<br />
 	<br />
 	<div style="width: 40%; margin: 0 auto">
-		<h:form id="registerForm" enctype="multipart/form-data">
+		<h:form id="registerForm">
 			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			<f:event listener="#{beanCarrito.validarExistencia}" type="postValidate" />
 			<h:inputHidden id="productoIdHidden" value="#{beanCarrito.actual.id}" />
@@ -20,7 +20,7 @@
 					<h:outputText value="Precio:" />
 					<h:outputText value="#{beanCarrito.actual.precio}" />
 					<p:outputLabel value="Cantidad:" />
-					<p:spinner id="inputCantidad" value="#{beanCarrito.cantidad}" min="0" required="true" requiredMessage="Cantidad no debe ser vacia"/>
+					<p:inputMask id="inputCantidad" value="#{beanCarrito.cantidad}" maxlength="2" mask="9?9" required="true" requiredMessage="Cantidad no debe ser vacia"/>
 					<p:commandButton value="Agregar a carrito" action="#{beanCarrito.agregarACarrito}" icon="fa fa-shopping-cart" ajax="true"/>
 					<p:button value="Volver" outcome="productosDisponibles" icon="fa fa-reply"/>
 				</h:panelGrid>
