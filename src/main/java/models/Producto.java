@@ -5,12 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 /**
  * Created by forte on 22/09/16.
  */
 @Entity
-public class Producto {
+public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     Long id;

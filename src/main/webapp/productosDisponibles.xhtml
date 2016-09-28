@@ -37,6 +37,9 @@
 					<p:column headerText="Descripcion">
 						<h:outputText value="#{p.descripcion}" />
 					</p:column>
+					<p:column headerText="Cantidad">
+						<h:outputText value="#{p.cantidad}" />
+					</p:column>
 					<p:column headerText="Acciones">
 						<p:commandButton icon="fa fa-edit" action="#{beanProductos.editarProducto(p)}"/>
 						<p:commandButton icon="fa fa-eye" action="#{beanDetalleProducto.mostrarDetallesProducto(p)}"/>

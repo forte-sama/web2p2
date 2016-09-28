@@ -2,26 +2,61 @@
 <html lang="en"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>P2</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:button value="Volver a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true"/>
-	</h:form>
-	<p:panel header="Producto: #{beanDetalleProducto.productoMostrado.nombre}">
-		<p:panelGrid columns="2">
-			<h:outputText value="Descripcion:" />
-			<h:outputText value="#{beanDetalleProducto.productoMostrado.descripcion}" />
-			<h:outputText value="Precio:" />
-			<h:outputText value="#{beanDetalleProducto.productoMostrado.precio}" />
-			<h:outputText value="Existencia:" />
-			<h:outputText value="Quedan: #{beanDetalleProducto.productoMostrado.cantidad}" />
-			<h:outputText value="Number:" />
-			<h:outputText value="24" />
-		</p:panelGrid>
-	</p:panel>
+	<p:button value="Volver a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true"/>
+	<div style="width: 60%; margin: 0 auto">
+		<br />
+		<p:panel header="Producto: #{beanDetalleProducto.productoMostrado.nombre}">
+			<p:panelGrid columns="2">
+				<h:outputText value="Descripcion:" />
+				<h:outputText value="#{beanDetalleProducto.productoMostrado.descripcion}" />
+				<h:outputText value="Precio:" />
+				<h:outputText value="#{beanDetalleProducto.productoMostrado.precio}" />
+				<h:outputText value="Quedan:" />
+				<h:outputText value="#{beanDetalleProducto.productoMostrado.cantidad}" />
+			</p:panelGrid>
+		</p:panel>
+		<br />
+		<p:panel header="Comentarios:" style="width: 100%;">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			<h:outputText value="#{flash.mensaje}" style="color: darkgreen;" />
+			<p:layout style="min-width:400px;min-height: 250px;">
+				<p:layoutUnit position="west" size="100" minSize="300" maxSize="300" rendered="#{beanDetalleProducto.puedePublicar}" >
+					<h:form id="reviewForm">
+						<p:panelGrid columns="1">
+							<f:facet name="header">
+								<h:outputText value="Rating: " />
+								<p:rating value="#{beanDetalleProducto.rating}" required="true" requiredMessage="El Rating no puede ser 0 estrellas" />
+								<br />
+							</f:facet>
+							<p:inputTextarea value="#{beanDetalleProducto.nuevoComentario}" required="true" requiredMessage="El comentario no puede estar vacio" />
+						</p:panelGrid>
+						<br />
+						<p:commandButton value="Publicar Reseña" action="#{beanDetalleProducto.agregarReview}" icon="fa fa-send" ajax="true"/>
+					</h:form>
+				</p:layoutUnit>
+				<p:layoutUnit position="center">
+					<ui:repeat value="#{beanDetalleProducto.reviews}" var="review">
+						<p:panel header="asd" style="text-align:center">
+							<f:facet name="header">
+								<h:outputText value="#{review.usuario.nombre}: " />
+								<p:rating value="#{review.rating}" readonly="true" />
+								<br />
+							</f:facet>
+							<h:panelGrid columns="1">
+								<h:outputText value="Cantidad: #{review.texto}" />
+							</h:panelGrid>
+						</p:panel>
+					</ui:repeat>
+				</p:layoutUnit>
+			</p:layout>
+		</p:panel>
+	</div>
 </h:body>
 </html>

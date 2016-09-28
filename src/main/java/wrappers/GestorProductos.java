@@ -69,4 +69,27 @@ public class GestorProductos {
 
         return res.size() > 0 ? res.get(0) : null;
     }
+
+    public static Long getCantidadById(Long id) {
+        Session session = newSession();
+
+        Query query = session.createQuery("select pro.cantidad from Producto as pro where id = :id");
+        query.setLong("id",id);
+
+        List<Long> res = query.list();
+
+        return res.size() > 0 ? res.get(0) : null;
+    }
+
+    public static void reduceExistence(Producto target, Long value) {
+        Session session = newSession();
+
+        session.beginTransaction();
+        //reducir cantidad
+        target.setCantidad(target.getCantidad() - value);
+        //persistir cambios
+        session.merge(target);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

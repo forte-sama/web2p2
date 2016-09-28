@@ -8,27 +8,40 @@
 	<title>P2</title>
 </h:head>
 <h:body>
-	<p:button value="Volver a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true"/>
+	<p:button value="Volver a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true" />
 	<br />
 	<br />
 	<div style="width: 70%; margin: 0 auto">
 		<h:form id="carritoForm">
+			<f:event listener="#{beanCarrito.validarCarrito}" type="postValidate" />
 			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-			<p:dataGrid var="prodEntry" value="#{beanCarrito.productos}" columns="4" layout="grid" rows="3">
+			<p:dataGrid id="items" var="prodEntry" value="#{beanCarrito.productos}" columns="3" layout="grid" rows="3">
 
 				<f:facet name="header">
 					Productos en el carrito
 				</f:facet>
 
 				<p:panel header="#{prodEntry.key.nombre}" style="text-align:center">
+
 					<h:panelGrid columns="1" style="width:100%">
 						<!--<p:graphicImage library="img" name="demo.png"/>-->
-						<h:outputText value="RD$#{prodEntry.key.precio}" />
-						<h:outputText value="#{prodEntry.value}" />
+						<h:outputText value="Precio: RD$#{prodEntry.key.precio}" />
+						<h:outputText value="Cantidad: #{prodEntry.value}" />
+						<p:commandButton action="#{beanCarrito.quitarDeCarrito(prodEntry.key)}" icon="fa fa-close" ajax="false" immediate="true"/>
 					</h:panelGrid>
 				</p:panel>
 
 			</p:dataGrid>
+			<br />
+			<p:commandButton value="Procesar compra"
+							 action="#{beanCarrito.comprar}"
+							 icon="fa fa-shopping-cart"
+							 rendered="#{beanCarrito.productos.size() > 0 and beanSesion.usuario != null}"
+							 ajax="false"
+							 immediate="true"/>
+			<h:outputText value="Inicia sesion para procesar compra"
+						  rendered="#{beanSesion.usuario == null}"
+						  style="font-weight: bolder" />
 		</h:form>
 	</div>
 </h:body>
