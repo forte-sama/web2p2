@@ -8,11 +8,11 @@
 </h:head>
 <h:body>
 	<p:button value="#{msg['to_cart_message']}" href="carrito.xhtml" icon="fa fa-shopping-cart" ajax="true"/>
-
+	<p:button value="#{msg['to_dashboard_message']}" href="dashboard.xhtml" icon="fa fa-bar-chart" ajax="true"/>
 	<br />
 	<br />
 	<div style="width: 80%; margin: 0 auto">
-		<p:panel header="Productos Disponibles">
+		<p:panel header="#{msg['productos_disponibles_message']}">
 			<h:form id="form">
 				<p:dataTable var="p"
 							 value="#{lazyView.lazyModel}"

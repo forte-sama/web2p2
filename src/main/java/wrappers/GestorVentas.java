@@ -1,5 +1,6 @@
 package wrappers;
 
+import models.Producto;
 import models.Usuario;
 import models.Venta;
 import org.hibernate.Query;
@@ -19,5 +20,12 @@ public class GestorVentas {
 		session.save(nuevaVenta);
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	public static List<Venta> getAll() {
+		Session session = newSession();
+		Query query = session.createQuery("from Venta as v");
+
+		return query.list();
 	}
 }

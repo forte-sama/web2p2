@@ -44,4 +44,36 @@ public class GestorDetalleVentas {
 
 		return query.list();
 	}
+
+	public static int cantidadProductosVendidos() {
+		Session session = newSession();
+
+		Query query = session.createQuery("from DetalleVenta as dv");
+
+		int total = 0;
+		List<DetalleVenta> detallesVentas = query.list();
+
+		for(DetalleVenta dv : detallesVentas) {
+			total += dv.getCantidad();
+		}
+
+		return total;
+	}
+
+	public static int cantidadConsumida(Producto target) {
+		Session session = newSession();
+
+		Query query = session.createQuery("from DetalleVenta as dv " +
+										  "where dv.producto = :target");
+		query.setEntity("target",target);
+
+		int total = 0;
+		List<DetalleVenta> detallesVentas = query.list();
+
+		for(DetalleVenta dv : detallesVentas) {
+			total += dv.getCantidad();
+		}
+
+		return total;
+	}
 }
