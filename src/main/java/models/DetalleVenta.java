@@ -12,9 +12,9 @@ public class DetalleVenta implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     Long id;
     Long cantidad;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     Producto producto;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     Venta venta;
 
     public DetalleVenta() { }

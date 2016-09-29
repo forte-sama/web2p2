@@ -1,0 +1,31 @@
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>P2</title>
+</h:head>
+<h:body>
+	<p:button value="Ir a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true"/>
+	<br />
+	<div style="width: 80%; margin: 0 auto">
+		<p:panel header="Historial de ventas de un producto" rendered="#{beanSesion.usuario != null and beanSesion.usuario.administrador}">
+			<h:form id="form">
+				<p:dataTable var="dv" value="#{beanHistorial.ventas}" paginator="false" id="tablaProductos">
+					<p:column headerText="Id Venta">
+						<h:outputText value="#{dv.venta.id}" />
+					</p:column>
+					<p:column headerText="Nombre">
+						<h:outputText value="#{dv.producto.nombre}" />
+					</p:column>
+					<p:column headerText="Cantidad pedida">
+						<h:outputText value="RD$ #{dv.cantidad * dv.producto.precio}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+		<h:outputText value="Debes ser un admin para ver esto" rendered="#{beanSesion.usuario == null or !beanSesion.usuario.administrador}" />
+	</div>
+</h:body>
+</html>

@@ -41,9 +41,14 @@
 						<h:outputText value="#{p.cantidad}" />
 					</p:column>
 					<p:column headerText="Acciones">
-						<p:commandButton icon="fa fa-edit" action="#{beanProductos.editarProducto(p)}"/>
-						<p:commandButton icon="fa fa-eye" action="#{beanDetalleProducto.mostrarDetallesProducto(p)}"/>
 						<p:commandButton icon="fa fa-cart-plus" action="#{beanCarrito.formCarrito(p)}"/>
+						<p:commandButton icon="fa fa-eye" action="#{beanDetalleProducto.mostrarDetallesProducto(p)}"/>
+						<p:commandButton icon="fa fa-edit"
+										 action="#{beanProductos.editarProducto(p)}"
+										 rendered="#{beanSesion.usuario != null}"/>
+						<p:commandButton icon="fa fa-history"
+										 action="#{beanHistorial.mostrarHistorial(p)}"
+										 rendered="#{beanSesion.usuario != null and beanSesion.usuario.administrador}"/>
 					</p:column>
 				</p:dataTable>
 			</h:form>

@@ -34,4 +34,14 @@ public class GestorDetalleVentas {
 
 		return query.list().size() > 0;
 	}
+
+	public static List<DetalleVenta> historialVentas(Producto target) {
+		Session session = newSession();
+
+		Query query = session.createQuery("from DetalleVenta as dv " +
+										  "where dv.producto = :target");
+		query.setEntity("target",target);
+
+		return query.list();
+	}
 }
