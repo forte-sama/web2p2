@@ -10,7 +10,7 @@
 	<p:button value="Ir a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true"/>
 	<br />
 	<div style="width: 80%; margin: 0 auto">
-		<p:panel header="Historial de ventas de un producto" rendered="#{beanSesion.usuario != null and beanSesion.usuario.administrador}">
+		<p:panel header="#{msg['historial_message']}" rendered="#{beanSesion.usuario != null and beanSesion.usuario.administrador}">
 			<h:form id="form">
 				<p:dataTable var="dv" value="#{beanHistorial.ventas}" paginator="false" id="tablaProductos">
 					<p:column headerText="Id Venta">

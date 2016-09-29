@@ -15,7 +15,7 @@
 			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			<f:event listener="#{beanCarrito.validarExistencia}" type="postValidate" />
 			<h:inputHidden id="productoIdHidden" value="#{beanCarrito.actual.id}" />
-			<p:panel header="Agregar a carrito: #{beanCarrito.actual.nombre}">
+			<p:panel header="#{msg['add_cart_message']}: #{beanCarrito.actual.nombre}">
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputText value="Precio:" />
 					<h:outputText value="#{beanCarrito.actual.precio}" />

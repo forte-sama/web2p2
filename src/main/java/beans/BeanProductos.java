@@ -17,6 +17,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by forte on 22/09/16.

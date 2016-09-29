@@ -6,7 +6,7 @@
 
     <application>
         <locale-config>
-            <default-locale>es</default-locale>
+            <default-locale>en</default-locale>
         </locale-config>
         <resource-bundle>
             <base-name>i18n.mensajes</base-name>

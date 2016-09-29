@@ -8,7 +8,7 @@
 	<title>P2</title>
 </h:head>
 <h:body>
-	<p:button value="Volver a lista" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true" />
+	<p:button value="#{msg['back_to_list_message']}" href="productosDisponibles.xhtml" icon="fa fa-reply" ajax="true" />
 	<br />
 	<br />
 	<div style="width: 70%; margin: 0 auto">
@@ -24,7 +24,6 @@
 				<p:panel header="#{prodEntry.key.nombre}" style="text-align:center">
 
 					<h:panelGrid columns="1" style="width:100%">
-						<!--<p:graphicImage library="img" name="demo.png"/>-->
 						<h:outputText value="Precio: RD$#{prodEntry.key.precio}" />
 						<h:outputText value="Cantidad: #{prodEntry.value}" />
 						<p:commandButton action="#{beanCarrito.quitarDeCarrito(prodEntry.key)}" icon="fa fa-close" ajax="false" immediate="true"/>
@@ -39,7 +38,7 @@
 							 rendered="#{beanCarrito.productos.size() > 0 and beanSesion.usuario != null}"
 							 ajax="false"
 							 immediate="true"/>
-			<h:outputText value="Inicia sesion para procesar compra"
+			<h:outputText value="#{msg['login_buy_message']}"
 						  rendered="#{beanSesion.usuario == null}"
 						  style="font-weight: bolder" />
 		</h:form>
